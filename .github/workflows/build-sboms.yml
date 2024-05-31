@@ -31,11 +31,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Run command on Docker image
+
+      - name: Install Syft
         run: |
-          echo "Running command on ${{ matrix.image }}"
-          docker pull ${{ matrix.image }}
-          docker sbom \
-            --format cyclonedx-json \
-            -o ${{ matrix.image }}-cyclonedx.json \
-            ${{ matrix.image }}
+          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | \
+            sh -s -- -b /usr/local/bin
+
+      - name: Generate SBOM with Syft
+        run: |
+          syft ${{ matrix.image }} \
+            -o cyclonedx-json > ${{ matrix.image }}-sbom_cyclonedx.json
+
+          syft ${{ matrix.image }} \
+            -o spdx-json > ${{ matrix.image }}-sbom_spdx.json
+
+      - name: Upload CycloneDX SBOM
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.image }}-cyclonedx
+          path: ${{ matrix.image }}-sbom_cyclonedx.json
+
+      - name: Upload SPDX SBOM
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.image }}-spdx
+          path: ${{ matrix.image }}-sbom_spdx.json
