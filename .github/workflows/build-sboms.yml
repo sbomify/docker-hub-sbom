@@ -37,5 +37,5 @@ jobs:
           docker pull ${{ matrix.image }}
           docker sbom \
             --format cyclonedx-json \
-            -o ${{ matrix.image }-cyclonedx.json \
+            -o "${{ matrix.image }-cyclonedx.json" \
             ${{ matrix.image }}
