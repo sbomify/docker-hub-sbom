@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - master
+  schedule:
+    - cron: "0 0 * * *"  # This sets the schedule to run every night at midnight UTC
 
 jobs:
   run-jobs:
