@@ -54,7 +54,7 @@ jobs:
 
       - name: Get image id
         run: |
-          IMAGE_ID=$(docker images --filter reference=nginx:latest -q)
+          IMAGE_ID=$(docker images --filter reference=${{ matrix.image.container }}:latest -q)
           echo "IMAGE_ID=$IMAGE_ID" >> $GITHUB_ENV
 
       - name: Upload SBOM
