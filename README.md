@@ -24,6 +24,14 @@ This GitHub Actions workflow runs a specified command on a set of Docker images 
 | redis       | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/aZi_nn8qP3) |
 | ubuntu      | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/PXcJnn8qPY) |
 
+## Validate downloaded SBOMs
+
+All SBOMs generated in the pipeline above are signed and you can verify the download the SBOMs as follows:
+
+```bash
+gh attestation verify path/to/downloaded-sbom.json --owner sbomify
+```
+
 ## Build the List
 
 To get the top 15 (official) Docker Hub repositories, use the following command:
@@ -34,3 +42,5 @@ curl -s "https://hub.docker.com/v2/repositories/library/?page_size=100" | \
     sort -nr | \
     head -n 15
 ```
+
+
