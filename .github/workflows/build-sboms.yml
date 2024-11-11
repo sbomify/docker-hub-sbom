@@ -11,50 +11,65 @@ on:
 jobs:
   run-jobs:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      attestations: write
     strategy:
       matrix:
         image:
-          - nginx
-          - memcached
-          - busybox
-          - alpine
-          - ubuntu
-          - redis
-          - postgres
-          - python
-          - node
-          - httpd
-          - mongo
-          - mysql
-          - rabbitmq
-          - docker
-          - hello-world
+          - container: nginx
+            component_id: kU3Pnn8qPA
+          - container: memcached
+            component_id: Gkp-nn8qPH
+          - container: busybox
+            component_id: APQUnn8qPQ
+          - container: alpine
+            component_id: TVLnnn8qPU
+          - container: ubuntu
+            component_id: PXcJnn8qPY
+          - container: redis
+            component_id: aZi_nn8qP3
+          - container: postgres
+            component_id: qAfAnn8qP8
+          - container: python
+            component_id: ggkhnn8qP-
+          - container: node
+            component_id: zLPFnn8qPd
+          - container: httpd
+            component_id: vKdann8qPf
+          - container: mongo
+            component_id: Naj9nn8qQa
+          - container: mysql
+            component_id: k33qnn8qQe
+          - container: rabbitmq
+            component_id: Np34nn8qQg
+          - container: docker
+            component_id: VcT9nn8qQj
+          - container: hello-world
+            component_id: Vrjnnn8qQn
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Pull image
+        run: docker pull ${{ matrix.image.container }}:latest
 
-
-      - name: Install Syft
+      - name: Get image id
         run: |
-          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | \
-            sh -s -- -b /usr/local/bin
+          IMAGE_ID=$(docker images --filter reference=nginx:latest -q)
+          echo "IMAGE_ID=$IMAGE_ID" >> $GITHUB_ENV
 
-      - name: Generate SBOM with Syft
-        run: |
-          syft ${{ matrix.image }} \
-            -o cyclonedx-json > ${{ matrix.image }}-sbom_cyclonedx.json
+      - name: Upload SBOM
+        uses: sbomify/github-action@master
+        env:
+          TOKEN: ${{ secrets.SBOMIFY_TOKEN }}
+          COMPONENT_ID: ${{ matrix.image.component_id }}
+          OVERRIDE_SBOM_METADATA: true
+          SBOM_VERSION: ${{ env.IMAGE_ID }}
+          DOCKER_IMAGE: ${{ matrix.image.container }}
+          AUGMENT: true
+          ENRICH: true
+          OUTPUT_FILE: ${{ matrix.container }}.cdx.json
 
-          syft ${{ matrix.image }} \
-            -o spdx-json > ${{ matrix.image }}-sbom_spdx.json
-
-      - name: Upload CycloneDX SBOM
-        uses: actions/upload-artifact@v3
+      - name: Attest
+        uses: actions/attest-build-provenance@v1
         with:
-          name: ${{ matrix.image }}-cyclonedx
-          path: ${{ matrix.image }}-sbom_cyclonedx.json
-
-      - name: Upload SPDX SBOM
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ matrix.image }}-spdx
-          path: ${{ matrix.image }}-sbom_spdx.json
+          subject-path: '${{ github.workspace }}/${{ matrix.container }}.cdx.json'

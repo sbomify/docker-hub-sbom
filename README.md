@@ -1,6 +1,28 @@
 # Docker Hub SBOMs
 
-This GitHub Actions workflow runs a specified command on a set of Docker images and generates Software Bill of Materials (SBOMs) in CycloneDX and SPDX formats for each image. The workflow is scheduled to run every night at midnight UTC.
+This GitHub Actions workflow runs a specified command on a set of Docker images and generates Software Bill of Materials (SBOMs) in CycloneDX format for each image. The workflow is scheduled to run every night at midnight UTC.
+
+
+
+## SBOMs
+
+| Image       | SBOMs    |
+|-------------|----------------|
+| alpine      | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/TVLnnn8qPU) |
+| busybox     | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/APQUnn8qPQ) |
+| docker      | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/VcT9nn8qQj) |
+| hello-world | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/Vrjnnn8qQn) |
+| httpd       | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/vKdann8qPf) |
+| memcached   | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/Gkp-nn8qPH) |
+| mongo       | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/Naj9nn8qQa) |
+| mysql       | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/k33qnn8qQe) |
+| nginx       | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/kU3Pnn8qPA) |
+| node        | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/zLPFnn8qPd) |
+| postgres    | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/qAfAnn8qP8) |
+| python      | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/ggkhnn8qP-) |
+| rabbitmq    | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/Np34nn8qQg) |
+| redis       | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/aZi_nn8qP3) |
+| ubuntu      | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/PXcJnn8qPY) |
 
 ## Build the List
 
@@ -12,27 +34,3 @@ curl -s "https://hub.docker.com/v2/repositories/library/?page_size=100" | \
     sort -nr | \
     head -n 15
 ```
-
-Currently, this yields the following images:
-
-* nginx
-* memcached
-* busybox
-* alpine
-* ubuntu
-* redis
-* postgres
-* python
-* node
-* httpd
-* mongo
-* mysql
-* rabbitmq
-* docker
-* hello-world
-
-Note: We're only checking the `:latest` tag to avoid iterating over every tag combination.
-
-## Generating SBOMs
-
-Every night, the workflow pulls the latest Docker images and generates SBOMs in both CycloneDX and SPDX formats using [Syft](https://github.com/anchore/syft).
