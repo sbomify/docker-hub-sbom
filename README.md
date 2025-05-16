@@ -2,12 +2,10 @@
 
 This GitHub Actions workflow runs a specified command on a set of Docker images and generates Software Bill of Materials (SBOMs) in CycloneDX format for each image. The workflow is scheduled to run every night at midnight UTC.
 
-
-
 ## SBOMs
 
-| Image       | SBOMs    |
-|-------------|----------------|
+| Image       | SBOMs                                                                                                          |
+| ----------- | -------------------------------------------------------------------------------------------------------------- |
 | alpine      | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/TVLnnn8qPU) |
 | busybox     | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/APQUnn8qPQ) |
 | docker      | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/VcT9nn8qQj) |
@@ -42,5 +40,3 @@ curl -s "https://hub.docker.com/v2/repositories/library/?page_size=100" | \
     sort -nr | \
     head -n 15
 ```
-
-
