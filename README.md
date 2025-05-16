@@ -6,21 +6,21 @@ This GitHub Actions workflow runs a specified command on a set of Docker images 
 
 | Image       | SBOMs                                                                                                          |
 | ----------- | -------------------------------------------------------------------------------------------------------------- |
-| alpine      | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/TVLnnn8qPU) |
-| busybox     | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/APQUnn8qPQ) |
-| docker      | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/VcT9nn8qQj) |
-| hello-world | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/Vrjnnn8qQn) |
-| httpd       | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/vKdann8qPf) |
-| memcached   | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/Gkp-nn8qPH) |
-| mongo       | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/Naj9nn8qQa) |
-| mysql       | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/k33qnn8qQe) |
-| nginx       | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/kU3Pnn8qPA) |
-| node        | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/zLPFnn8qPd) |
-| postgres    | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/qAfAnn8qP8) |
-| python      | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/ggkhnn8qP-) |
-| rabbitmq    | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/Np34nn8qQg) |
-| redis       | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/aZi_nn8qP3) |
-| ubuntu      | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/component/PXcJnn8qPY) |
+| alpine      | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/sboms/component/TVLnnn8qPU) |
+| busybox     | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/sboms/component/APQUnn8qPQ) |
+| docker      | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/sboms/component/VcT9nn8qQj) |
+| hello-world | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/sboms/component/Vrjnnn8qQn) |
+| httpd       | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/sboms/component/vKdann8qPf) |
+| memcached   | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/sboms/component/Gkp-nn8qPH) |
+| mongo       | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/sboms/component/Naj9nn8qQa) |
+| mysql       | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/sboms/component/k33qnn8qQe) |
+| nginx       | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/sboms/component/kU3Pnn8qPA) |
+| node        | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/sboms/component/zLPFnn8qPd) |
+| postgres    | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/sboms/component/qAfAnn8qP8) |
+| python      | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/sboms/component/ggkhnn8qP-) |
+| rabbitmq    | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/sboms/component/Np34nn8qQg) |
+| redis       | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/sboms/component/aZi_nn8qP3) |
+| ubuntu      | [![sbomified](https://sbomify.com/assets/images/logo/badge.svg)](https://app.sbomify.com/sboms/component/PXcJnn8qPY) |
 
 ## Validate downloaded SBOMs
 
